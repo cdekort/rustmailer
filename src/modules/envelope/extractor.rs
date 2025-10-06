@@ -71,6 +71,7 @@ pub fn extract_envelope(
         account_id,
         mailbox_id: mailbox_id(account_id, mailbox_name),
         mailbox_name: mailbox_name.into(),
+        id: uid.to_string(),
         uid,
         internal_date,
         size,

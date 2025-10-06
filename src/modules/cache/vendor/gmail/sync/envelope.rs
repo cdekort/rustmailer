@@ -359,6 +359,7 @@ impl GmailEnvelope {
             account_id: self.account_id,
             mailbox_id: self.label_id,
             mailbox_name: self.label_name,
+            id: self.id.clone(),
             uid: 0,
             internal_date: Some(self.internal_date),
             size: self.size,

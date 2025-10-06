@@ -293,6 +293,7 @@ mod tests {
             account_id: 0,
             mailbox_id: 0,
             mailbox_name: "inbox_001".to_string(),
+            id: "42".to_string(),
             uid: 42,
             internal_date: Some(1709510400000), // 2024-03-04 00:00:00 UTC
             size: 1024,
@@ -362,6 +363,7 @@ mod tests {
             account_id: 0,
             mailbox_id: 0,
             mailbox_name: "inbox".to_string(),
+            id: "1".to_string(),
             uid: 1,
             internal_date: Some(0),
             size: 0,

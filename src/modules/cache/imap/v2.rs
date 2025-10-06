@@ -153,7 +153,13 @@ pub struct EmailEnvelopeV3 {
     pub mailbox_id: u64,
     /// The decoded, human-readable name of the mailbox (e.g., "INBOX", "Sent").
     pub mailbox_name: String,
+    /// The unified identifier for the message that works across IMAP and Gmail API.
+    /// - For IMAP accounts, this is the UID converted to a string.
+    /// - For Gmail API accounts, this is the message ID (mid).
+    #[serde(skip_serializing)]
+    pub id: String,
     /// The unique identifier (IMAP UID) of the email within the mailbox.
+    #[serde(skip_serializing)]
     pub uid: u32,
     /// The date and time the email was received by the server, as a Unix timestamp in milliseconds.
     /// If `None`, the internal date is unavailable.
@@ -235,6 +241,7 @@ pub struct EmailEnvelopeV3 {
     /// provides an identifier for the email in question.
     ///
     /// This field is optional, meaning that it may be `None` if no external service identifier is available.
+    #[serde(skip_serializing)]
     pub mid: Option<String>,
     /// A list of labels applied to the message.
     ///
@@ -609,6 +616,7 @@ impl From<EmailEnvelopeV2> for EmailEnvelopeV3 {
             account_id: value.account_id,
             mailbox_id: value.mailbox_id,
             mailbox_name: value.mailbox_name,
+            id: value.uid.to_string(),
             uid: value.uid,
             internal_date: value.internal_date,
             size: value.size,
