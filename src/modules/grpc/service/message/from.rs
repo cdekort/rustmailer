@@ -162,7 +162,7 @@ impl From<EmailEnvelopeV3> for rustmailer_grpc::EmailEnvelope {
             account_id: value.account_id,
             mailbox_id: value.mailbox_id,
             mailbox_name: value.mailbox_name,
-            uid: value.uid,
+            id: value.mid.unwrap_or_else(|| value.uid.to_string()),
             internal_date: value.internal_date,
             size: value.size,
             flags: value.flags.into_iter().map(Into::into).collect(),
@@ -215,7 +215,6 @@ impl From<EmailEnvelopeV3> for rustmailer_grpc::EmailEnvelope {
                 .map(Into::into)
                 .collect(),
             received: value.received.map(Into::into),
-            mid: value.mid,
             label_ids: value.labels,
         }
     }
